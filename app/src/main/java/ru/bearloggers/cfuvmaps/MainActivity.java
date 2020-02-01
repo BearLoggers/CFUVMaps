@@ -10,7 +10,8 @@ import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.Toast;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity
+{
 
     private Button but1 = null;
     private Button but2 = null;
@@ -23,10 +24,36 @@ public class MainActivity extends AppCompatActivity {
     private int x = 0;
 
 
+    View.OnClickListener lis(String imageName, final java.lang.Class c)
+    {
+        return new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v)
+            {
+                Intent intent = new Intent(MainActivity.this, c);
+                startActivity(intent);
+            }
+        };
+    }
 
+    View.OnClickListener inBeta()
+    {
+        return new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v)
+            {
+                ToastBeta();
+            }
+        };
+    }
+
+    Button[] floorButtons = null;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState)
+    {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
@@ -38,12 +65,13 @@ public class MainActivity extends AppCompatActivity {
         floor2 = (Button) findViewById(R.id.floor2);
         floor1 = (Button) findViewById(R.id.floor1);
         floor0 = (Button) findViewById(R.id.floor0);
+        floorButtons = new Button[]{floor4, floor3, floor2, floor1, floor0};
         Animation amime = AnimationUtils.loadAnimation(this, R.anim.alpha);
         //buttID.setClickable(false);
     }
 
 
-    public void ToastBetta ()
+    public void ToastBeta()
     {
           Toast.makeText(this, "coming soon", Toast.LENGTH_SHORT).show();
     }
@@ -51,148 +79,71 @@ public class MainActivity extends AppCompatActivity {
 
     public void korpus_A(View view)
     {
-        if (x!= 0) {
-            Animation anime = AnimationUtils.loadAnimation(this, R.anim.alpha);
-            floor4.startAnimation(anime);
-            floor3.startAnimation(anime);
-            floor2.startAnimation(anime);
-            floor1.startAnimation(anime);
-            floor0.startAnimation(anime);
-        }
-        else if (x == 0)
+        if (x != 0)
         {
-            x=1;
+            Animation anime = AnimationUtils.loadAnimation(this, R.anim.alpha);
+            for (Button floor : floorButtons)
+            {
+                floor.setAnimation(anime);
+            }
+        }
+        else
+        {
+            x = 1;
         }
 
-        floor4.setVisibility(View.VISIBLE);
-        floor3.setVisibility(View.VISIBLE);
-        floor2.setVisibility(View.VISIBLE);
-        floor1.setVisibility(View.VISIBLE);
-        floor0.setVisibility(View.VISIBLE);
-        floor0.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, floor0A.class);
-                startActivity(intent);
-            }
-        });
+        for (Button floor : floorButtons)
+        {
+            floor.setVisibility(View.VISIBLE);
+        }
+        floor0.setOnClickListener(lis("cat", floor0A.class));
     }
 
     public void korpus_B(View view)
     {
-        if (x!= 0) {
-        Animation anime = AnimationUtils.loadAnimation(this, R.anim.alpha);
-        floor4.startAnimation(anime);
-        floor3.startAnimation(anime);
-        floor2.startAnimation(anime);
-        floor1.startAnimation(anime);
-        floor0.startAnimation(anime);
-        }
-        else if (x == 0)
+        if (x != 0)
         {
-            x=1;
+            Animation anime = AnimationUtils.loadAnimation(this, R.anim.alpha);
+            for (Button floor : floorButtons)
+            {
+                floor.startAnimation(anime);
+            }
+        }
+        else
+        {
+            x = 1;
         }
 
 
-
-        floor4.setVisibility(View.VISIBLE);
-        floor4.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                ToastBetta();
-            }
-        });
-
-        floor3.setVisibility(View.VISIBLE);
-        floor3.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                ToastBetta();
-            }
-        });
-
-        floor2.setVisibility(View.VISIBLE);
-        floor2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                ToastBetta();
-            }
-        });
-
-        floor1.setVisibility(View.VISIBLE);
-        floor1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                ToastBetta();
-            }
-        });
-
-        floor0.setVisibility(View.VISIBLE);
-        floor0.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                ToastBetta();
-            }
-        });
+        for (Button floor : floorButtons)
+        {
+            floor.setVisibility(View.VISIBLE);
+            floor.setOnClickListener(inBeta());
+        }
     }
 
 
     public void korpus_C(View view)
     {
-        if (x!= 0) {
+        if (x!= 0)
+        {
             Animation anime = AnimationUtils.loadAnimation(this, R.anim.alpha);
-            floor4.startAnimation(anime);
-            floor3.startAnimation(anime);
-            floor2.startAnimation(anime);
-            floor1.startAnimation(anime);
+            for (Button floor : floorButtons)
+            {
+                floor.startAnimation(anime);
+            }
             floor0.startAnimation(anime);
         }
-        else if (x == 0)
+        else
         {
-            x=1;
+            x = 1;
         }
 
-
-
-        floor4.setVisibility(View.VISIBLE);
-        floor4.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                ToastBetta();
-            }
-        });
-
-        floor3.setVisibility(View.VISIBLE);
-        floor3.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                ToastBetta();
-            }
-        });
-
-        floor2.setVisibility(View.VISIBLE);
-        floor2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                ToastBetta();
-            }
-        });
-
-        floor1.setVisibility(View.VISIBLE);
-        floor1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                ToastBetta();
-            }
-        });
-
-        floor0.setVisibility(View.VISIBLE);
-        floor0.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                ToastBetta();
-            }
-        });
+        for (Button floor : floorButtons)
+        {
+            floor.setVisibility(View.VISIBLE);
+            floor.setOnClickListener(inBeta());
+        }
     }
 
-    }
+}
