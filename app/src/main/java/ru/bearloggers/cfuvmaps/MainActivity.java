@@ -24,14 +24,15 @@ public class MainActivity extends AppCompatActivity
     private int x = 0;
 
 
-    View.OnClickListener lis(String imageName, final java.lang.Class c)
+    View.OnClickListener lis(final String imageName)
     {
         return new View.OnClickListener()
         {
             @Override
             public void onClick(View v)
             {
-                Intent intent = new Intent(MainActivity.this, c);
+                Intent intent = new Intent(MainActivity.this, FloorViewer.class);
+                intent.putExtra("IMAGE_NAME", imageName);
                 startActivity(intent);
             }
         };
@@ -96,7 +97,8 @@ public class MainActivity extends AppCompatActivity
         {
             floor.setVisibility(View.VISIBLE);
         }
-        floor0.setOnClickListener(lis("cat", floor0A.class));
+        floor1.setOnClickListener(lis("sadcat"));
+        floor0.setOnClickListener(lis("tsokolo1betta"));
     }
 
     public void korpus_B(View view)
@@ -132,7 +134,6 @@ public class MainActivity extends AppCompatActivity
             {
                 floor.startAnimation(anime);
             }
-            floor0.startAnimation(anime);
         }
         else
         {
