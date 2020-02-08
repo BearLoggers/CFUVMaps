@@ -80,6 +80,7 @@ public class MainActivity extends AppCompatActivity
 
     public void korpus_A(View view)
     {
+
         if (x != 0)
         {
             Animation anime = AnimationUtils.loadAnimation(this, R.anim.alpha);

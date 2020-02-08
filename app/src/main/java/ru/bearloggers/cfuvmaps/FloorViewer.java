@@ -26,7 +26,7 @@ public class FloorViewer extends AppCompatActivity {
     private float Y;
 
     private float scale = 3f;
-    private final float ScaleMin = 3f, ScaleMax = 10f;
+    private final float ScaleMin = 2.7f, ScaleMax = 7f;
 
     private ScaleGestureDetector SGD;
     //private Matrix matrix = new Matrix();
@@ -52,6 +52,7 @@ public class FloorViewer extends AppCompatActivity {
         setContentView(R.layout.activity_floorviewer);
         String imageName = getIntent().getStringExtra("IMAGE_NAME");
         Toast.makeText(this, imageName, Toast.LENGTH_SHORT).show();
+
 
         mainImage = findViewById(R.id.luckyID);
         Resources resources = getResources();

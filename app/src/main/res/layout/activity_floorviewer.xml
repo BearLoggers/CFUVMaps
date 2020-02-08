@@ -20,7 +20,8 @@
             android:scaleY="3"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/sadcat" />
+            app:srcCompat="@drawable/tsokolo1betta" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </RelativeLayout>
