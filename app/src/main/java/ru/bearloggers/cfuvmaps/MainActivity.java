@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity
@@ -22,6 +23,7 @@ public class MainActivity extends AppCompatActivity
     private Button floor1 = null;
     private Button floor0 = null;
     private int x = 0;
+    private TextView SearchText = null;
 
 
     View.OnClickListener lis(final String imageName)
@@ -58,6 +60,7 @@ public class MainActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        SearchText = findViewById(R.id.SearchText);
         but1 = (Button) findViewById(R.id.but1);
         but2 = (Button) findViewById(R.id.but2);
         but3 = (Button) findViewById(R.id.but3);
@@ -77,10 +80,59 @@ public class MainActivity extends AppCompatActivity
           Toast.makeText(this, "coming soon", Toast.LENGTH_SHORT).show();
     }
 
+    public void Find (View view)
+    {
+        String kabinet = SearchText.getText().toString();
+
+        if (SearchText.getText().length() == 4) {
+            Intent intent = new Intent(MainActivity.this, FloorViewer.class);
+            char floor = kabinet.charAt(0);
+            //int room = kabinet.charAt(1)*10 + kabinet.charAt(2);
+            char corpus = kabinet.charAt(3);
+            switch (corpus) {
+                case 'а':
+                case 'А':
+                    korpus_A(view);
+                        switch (floor){
+                            case '0':
+                                intent.putExtra("IMAGE_NAME", "tsokolo1betta");
+                                startActivity(intent);
+                                break;
+                            case '1':
+                                intent.putExtra("IMAGE_NAME", "sadcat");
+                                startActivity(intent);
+                                break;
+                            case '2':
+                            case '3':
+                            case '4':
+                                ToastBeta();
+                                break;
+                            default:
+                                Toast.makeText(this, "Введен несуществующий этаж", Toast.LENGTH_SHORT).show();
+                        }
+                    break;
+                case 'б':
+                case 'Б':
+                    ToastBeta();
+                    korpus_B(view);
+                    break;
+                case 'в':
+                case 'В':
+                    ToastBeta();
+                    korpus_C(view);
+                    break;
+                default:
+                    Toast.makeText(this, "Введен несуществующий корпус", Toast.LENGTH_SHORT).show();
+            }
+        }
+        else
+        {
+            Toast.makeText(this, "Некорректо введен номер кабинета", Toast.LENGTH_SHORT).show();
+        }
+    }
 
     public void korpus_A(View view)
     {
-
         if (x != 0)
         {
             Animation anime = AnimationUtils.loadAnimation(this, R.anim.alpha);

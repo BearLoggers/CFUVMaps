@@ -96,7 +96,7 @@
         app:layout_constraintTop_toBottomOf="@+id/floor1" />
 
     <EditText
-        android:id="@+id/editText"
+        android:id="@+id/SearchText"
         android:layout_width="198dp"
         android:layout_height="27dp"
         android:layout_marginTop="52dp"
@@ -115,11 +115,12 @@
         android:layout_width="23dp"
         android:layout_height="22dp"
         android:background="@drawable/lupa"
-        android:text=" "
-        app:layout_constraintBottom_toBottomOf="@+id/editText"
-        app:layout_constraintEnd_toEndOf="@+id/editText"
+        android:text=""
+        android:onClick="Find"
+        app:layout_constraintBottom_toBottomOf="@+id/SearchText"
+        app:layout_constraintEnd_toEndOf="@+id/SearchText"
         app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="@+id/editText"
-        app:layout_constraintTop_toTopOf="@+id/editText" />
+        app:layout_constraintStart_toStartOf="@+id/SearchText"
+        app:layout_constraintTop_toTopOf="@+id/SearchText" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
