@@ -4,9 +4,11 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -22,11 +24,12 @@ public class MainActivity extends AppCompatActivity
     private Button floor2 = null;
     private Button floor1 = null;
     private Button floor0 = null;
+    private Button searchEnter = null;
     private int x = 0;
     private TextView SearchText = null;
 
 
-    View.OnClickListener lis(final String imageName)
+    View.OnClickListener lis(final String imageName, final int floor)
     {
         return new View.OnClickListener()
         {
@@ -35,6 +38,8 @@ public class MainActivity extends AppCompatActivity
             {
                 Intent intent = new Intent(MainActivity.this, FloorViewer.class);
                 intent.putExtra("IMAGE_NAME", imageName);
+                intent.putExtra("FLOOR", floor);
+                intent.putExtra("ROOM", -1);
                 startActivity(intent);
             }
         };
@@ -61,6 +66,7 @@ public class MainActivity extends AppCompatActivity
         setContentView(R.layout.activity_main);
 
         SearchText = findViewById(R.id.SearchText);
+        searchEnter = findViewById(R.id.searchEnter);
         but1 = (Button) findViewById(R.id.but1);
         but2 = (Button) findViewById(R.id.but2);
         but3 = (Button) findViewById(R.id.but3);
@@ -72,6 +78,19 @@ public class MainActivity extends AppCompatActivity
         floorButtons = new Button[]{floor4, floor3, floor2, floor1, floor0};
         Animation amime = AnimationUtils.loadAnimation(this, R.anim.alpha);
         //buttID.setClickable(false);
+
+        SearchText.setImeOptions(EditorInfo.IME_ACTION_SEARCH);
+        SearchText.setImeActionLabel("Несквик с пивом", KeyEvent.KEYCODE_ENTER);
+        SearchText.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+            @Override
+            public boolean onEditorAction(TextView textView, int actionId, KeyEvent event) {
+                if (actionId == EditorInfo.IME_ACTION_SEARCH || actionId == EditorInfo.IME_ACTION_DONE
+                        || event.getAction() == KeyEvent.ACTION_DOWN && event.getKeyCode() == KeyEvent.KEYCODE_ENTER) {
+                    searchEnter.callOnClick();
+                }
+                return true;
+            }
+        });
     }
 
 
@@ -86,25 +105,30 @@ public class MainActivity extends AppCompatActivity
 
         if (SearchText.getText().length() == 4) {
             Intent intent = new Intent(MainActivity.this, FloorViewer.class);
-            char floor = kabinet.charAt(0);
-            //int room = kabinet.charAt(1)*10 + kabinet.charAt(2);
+            int floor = charToInt( kabinet.charAt(0) );
+            intent.putExtra("FLOOR", floor);
+
+            int room = charToInt( kabinet.charAt(1) )*10 + charToInt( kabinet.charAt(2) );
+            intent.putExtra("ROOM", room);
             char corpus = kabinet.charAt(3);
             switch (corpus) {
                 case 'а':
-                case 'А':
+                case 'А':   // Русская
+                case 'A':   // Английская
+                case 'a':
                     korpus_A(view);
                         switch (floor){
-                            case '0':
+                            case 0:
                                 intent.putExtra("IMAGE_NAME", "tsokolo1betta");
                                 startActivity(intent);
                                 break;
-                            case '1':
+                            case 1:
                                 intent.putExtra("IMAGE_NAME", "sadcat");
                                 startActivity(intent);
                                 break;
-                            case '2':
-                            case '3':
-                            case '4':
+                            case 2:
+                            case 3:
+                            case 4:
                                 ToastBeta();
                                 break;
                             default:
@@ -150,8 +174,8 @@ public class MainActivity extends AppCompatActivity
         {
             floor.setVisibility(View.VISIBLE);
         }
-        floor1.setOnClickListener(lis("sadcat"));
-        floor0.setOnClickListener(lis("tsokolo1betta"));
+        floor1.setOnClickListener(lis("sadcat", 1));
+        floor0.setOnClickListener(lis("tsokolo1betta", 0));
     }
 
     public void korpus_B(View view)
@@ -200,4 +224,8 @@ public class MainActivity extends AppCompatActivity
         }
     }
 
+
+    private int charToInt(char c) {
+        return c - '0';
+    }
 }
