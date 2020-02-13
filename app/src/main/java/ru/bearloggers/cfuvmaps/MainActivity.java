@@ -3,6 +3,7 @@ package ru.bearloggers.cfuvmaps;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.View;
@@ -27,6 +28,8 @@ public class MainActivity extends AppCompatActivity
     private Button searchEnter = null;
     private int x = 0;
     private TextView SearchText = null;
+
+    private int neskvik = 0;
 
 
     View.OnClickListener lis(final String imageName, final int floor)
@@ -64,6 +67,7 @@ public class MainActivity extends AppCompatActivity
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        // setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
 
         SearchText = findViewById(R.id.SearchText);
         searchEnter = findViewById(R.id.searchEnter);
@@ -157,6 +161,12 @@ public class MainActivity extends AppCompatActivity
 
     public void korpus_A(View view)
     {
+        neskvik++;
+        if (neskvik == 10) {
+            Toast.makeText(this, "Да вы человек культуры", Toast.LENGTH_LONG).show();
+            setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
+        }
+
         if (x != 0)
         {
             Animation anime = AnimationUtils.loadAnimation(this, R.anim.alpha);
