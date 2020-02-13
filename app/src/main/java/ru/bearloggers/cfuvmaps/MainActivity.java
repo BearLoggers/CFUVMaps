@@ -69,6 +69,8 @@ public class MainActivity extends AppCompatActivity
         setContentView(R.layout.activity_main);
         // setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
 
+        if (getRequestedOrientation() == ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE) neskvik = 10;
+
         SearchText = findViewById(R.id.SearchText);
         searchEnter = findViewById(R.id.searchEnter);
         but1 = (Button) findViewById(R.id.but1);
@@ -165,6 +167,11 @@ public class MainActivity extends AppCompatActivity
         if (neskvik == 10) {
             Toast.makeText(this, "Да вы человек культуры", Toast.LENGTH_LONG).show();
             setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
+        }
+        else if (neskvik == 20) {
+            Toast.makeText(this, "Помните про культ несквика с пивом . . .", Toast.LENGTH_SHORT).show();
+            setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+            neskvik = 0;
         }
 
         if (x != 0)
