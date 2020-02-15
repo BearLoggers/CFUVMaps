@@ -3,14 +3,17 @@ package ru.bearloggers.cfuvmaps;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.drawable.IconCompat;
 
+import android.app.Dialog;
 import android.content.Intent;
 import android.content.res.Resources;
 import android.graphics.Matrix;
+import android.graphics.Point;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.ScaleGestureDetector;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
@@ -35,7 +38,7 @@ public class FloorViewer extends AppCompatActivity {
     private float screen_height = -1;
 
     private float scale = 3f;
-    private final float ScaleMin = 2.7f, ScaleMax = 7f;
+    private final float ScaleMin = 3f, ScaleMax = 7f;
 
     private boolean isDrag = false;
 
@@ -56,6 +59,26 @@ public class FloorViewer extends AppCompatActivity {
         }
     }
 
+    //современные решения
+    void debug(float x, float y) {
+        Toast.makeText(this, String.format("X= %f Y= %f", x, y), Toast.LENGTH_SHORT).show();
+    }
+
+    // диалог это новый layout
+    boolean insadee() {
+        final Dialog dialog = new Dialog(FloorViewer.this);
+        dialog.setContentView(R.layout.dialog_layout);
+        dialog.setCancelable(false);
+        dialog.show();
+        Button close_dialog = (Button) dialog.findViewById(R.id.close);
+        close_dialog.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+            }
+        });
+        return true;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -82,7 +105,9 @@ public class FloorViewer extends AppCompatActivity {
                 rooms = new Room[] {
                         new Room(198, 205, 250, 234, 1250,1013, 1),
                         new Room(154, 206, 197, 234,954, 1116, 2),
-                        new Room(422, 547, 480, 586, -658, -879, 3)
+                        new Room(422, 547, 480, 586, -658, -879, 3),
+                        new Room(217, 362, 231, 390, 25, -705, 4)  //кабинет по координатам с моего телефона
+
                 };
                 break;
 
@@ -143,6 +168,7 @@ public class FloorViewer extends AppCompatActivity {
         );
 
 
+
         myLayout.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
@@ -152,6 +178,7 @@ public class FloorViewer extends AppCompatActivity {
                 float x = event.getX();
                 float y = event.getY();
 
+
                 float screen_width = myLayout.getMeasuredWidth();
                 float screen_height = myLayout.getMeasuredHeight();
                 float img_width = mainImage.getWidth();
@@ -159,13 +186,31 @@ public class FloorViewer extends AppCompatActivity {
                 float scale_x = mainImage.getScaleX();
                 float scale_y = mainImage.getScaleY();
 
+
                 float ax = (img_width  * (scale_x - 1)) / 2;
                 float ay = (img_height * (scale_y - 1)) / 2;
+
+                float ImageX = (x - X + ax) / scale_x;  // перенесенные relativeImageX
+                float ImageY = (y - Y + ay) / scale_y;
+
+                /*
+                if (event.getAction() == MotionEvent.ACTION_UP ){
+                    debug(ImageX, ImageY);                          //тут я узнавал кооры углов комнат
+                }
+                */
+
+
+                if((ImageX>=217 && ImageX<= 231) && (ImageY>=362 && ImageY<=390 ) ){
+                    insadee();  // да, я глупый и не смог разобраться с (clickPosition.isInsideRoom(r))
+                }
+
 
                 if (event.getAction() == MotionEvent.ACTION_MOVE) {
                     isDrag = true;
                     float dX = x - px;
                     float dY = y - py;
+
+
 
                     if (px != -1 && py != -1) {
                         X += dX;
@@ -187,7 +232,9 @@ public class FloorViewer extends AppCompatActivity {
 
                         mainImage.setX(X);
                         mainImage.setY(Y);
+
                         Log.v("test", String.format("X, Y: %f, %f", X, Y));
+
                     }
                     px = x;
                     py = y;
@@ -197,17 +244,22 @@ public class FloorViewer extends AppCompatActivity {
                     py = -1;
 
                     if (!isDrag) {
-                        float relativeImageX = (x - X + ax) / scale_x;
+                        /*
+                        float relativeImageX = (x - X + ax) / scale_x; //я их перенес выше и назвал чуть иначе
                         float relativeImageY = (y - Y + ay) / scale_y;
 
-                        Log.v("TESTS", String.format("rX, rY: %f, %f", relativeImageX, relativeImageY));
-                        Point clickPosition = new Point(relativeImageX, relativeImageY);
+                         */
+
+                        Log.v("TESTS", String.format("rX, rY: %f, %f", ImageX, ImageY));
+                        Point clickPosition = new Point(ImageX, ImageY);
 
                         for (Room r : rooms) {
                             if (clickPosition.isInsideRoom(r)) {
                                 Log.v("TESTS", String.format("Inside %d!", r.number));
                             }
                         }
+
+
                     }
 
                     isDrag = false;

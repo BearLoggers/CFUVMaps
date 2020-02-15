@@ -2,9 +2,11 @@ package ru.bearloggers.cfuvmaps;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Dialog;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.animation.Animation;
@@ -191,8 +193,11 @@ public class MainActivity extends AppCompatActivity
         {
             floor.setVisibility(View.VISIBLE);
         }
+        floor3.setOnClickListener(lis("floor3", 3));
+        floor2.setOnClickListener(lis("floor2", 2));
         floor1.setOnClickListener(lis("sadcat", 1));
         floor0.setOnClickListener(lis("tsokolo1betta", 0));
+
     }
 
     public void korpus_B(View view)
@@ -221,6 +226,23 @@ public class MainActivity extends AppCompatActivity
 
     public void korpus_C(View view)
     {
+
+        /*
+        final Dialog dialog = new Dialog(MainActivity.this);
+        dialog.setContentView(R.layout.dialog_layout);
+
+        Button close_dialog = (Button) dialog.findViewById(R.id.close);
+        close_dialog.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+            }
+        });
+
+        dialog.setCancelable(false);
+        dialog.show();
+         */
+
         if (x!= 0)
         {
             Animation anime = AnimationUtils.loadAnimation(this, R.anim.alpha);
@@ -239,6 +261,8 @@ public class MainActivity extends AppCompatActivity
             floor.setVisibility(View.VISIBLE);
             floor.setOnClickListener(inBeta());
         }
+
+
     }
 
 
