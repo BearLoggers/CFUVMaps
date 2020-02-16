@@ -37,7 +37,7 @@ public class FloorViewer extends AppCompatActivity {
     private float screen_width = -1;
     private float screen_height = -1;
 
-    private float scale = 3f;
+    private float scale = 3.5f;
     private final float ScaleMin = 3f, ScaleMax = 7f;
 
     private boolean isDrag = false;
@@ -70,6 +70,7 @@ public class FloorViewer extends AppCompatActivity {
         dialog.setContentView(R.layout.dialog_layout);
         dialog.setCancelable(false);
         dialog.show();
+
         Button close_dialog = (Button) dialog.findViewById(R.id.close);
         close_dialog.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -107,6 +108,65 @@ public class FloorViewer extends AppCompatActivity {
                         new Room(154, 206, 197, 234,954, 1116, 2),
                         new Room(422, 547, 480, 586, -658, -879, 3),
                         new Room(217, 362, 231, 390, 25, -705, 4)  //кабинет по координатам с моего телефона
+
+                };
+                break;
+            case 2:
+                rooms = new Room[] {
+                        new Room(-1, -1, -1, -1, 86,-276, 1),
+                        new Room(-1, -1, -1, -1, -122,-296, 2),
+                        new Room(-1, -1, -1, -1, -122,-296, 3),
+                        new Room(-1, -1, -1, -1, -267,-276, 4),
+                        new Room(-1, -1, -1, -1, -267,-276, 5),
+                        new Room(-1, -1, -1, -1, -188,-306, 6),
+
+                        new Room(-1, -1, -1, -1, -188,-306, 8),
+                        new Room(-1, -1, -1, -1, -420,-306, 9),
+                        new Room(-1, -1, -1, -1, -189,-134, 10),
+                        new Room(-1, -1, -1, -1, -420,-306, 11),
+                        new Room(-1, -1, -1, -1, -189,-134, 12),
+
+                        new Room(-1, -1, -1, -1, -186,34, 14),
+                        new Room(-1, -1, -1, -1, -351,-304, 15),
+                        new Room(-1, -1, -1, -1, -176,334, 16),
+                        new Room(-1, -1, -1, -1, -176,334, 17),
+                        new Room(-1, -1, -1, -1, -176,334, 18),
+                        new Room(-1, -1, -1, -1, -333,-221, 19),
+                        new Room(-1, -1, -1, -1, -195,342, 20),
+                        new Room(-1, -1, -1, -1, -341,-157, 21),
+                        new Room(-1, -1, -1, -1, -195,342, 22),
+                        new Room(-1, -1, -1, -1, -331,-60, 23),
+
+                        new Room(-1, -1, -1, -1, -350,32, 25),
+
+                        new Room(-1, -1, -1, -1, -352,188, 27),
+                        new Room(-1, -1, -1, -1, 349,723, 28),
+                        new Room(-1, -1, -1, -1, -352,288, 29),
+                        new Room(-1, -1, -1, -1, 397,756, 30),
+                        new Room(-1, -1, -1, -1, -352,288, 31),
+
+                        new Room(-1, -1, -1, -1, -341,460, 33),
+                        new Room(-1, -1, -1, -1, 566,753, 34),
+                        new Room(-1, -1, -1, -1, -341,460, 35),
+                        new Room(-1, -1, -1, -1, 566,753, 36),
+                        new Room(-1, -1, -1, -1, -260,595, 37),
+                        new Room(-1, -1, -1, -1, -260,595, 38),
+                        new Room(-1, -1, -1, -1, -260,595, 39),
+
+                        new Room(-1, -1, -1, -1, 855,781, 42),
+                        new Room(-1, -1, -1, -1, 288,823, 43),
+                        new Room(-1, -1, -1, -1, 855,781, 44),
+                        new Room(-1, -1, -1, -1, 350,830, 45),
+
+                        new Room(-1, -1, -1, -1, 428,806, 47),
+
+                        new Room(-1, -1, -1, -1, 428,806, 49),
+
+                        new Room(-1, -1, -1, -1, 678,827, 55),
+
+                        new Room(-1, -1, -1, -1, 855,781, 61),
+
+                        new Room(-1, -1, -1, -1, 855,781, 63),
 
                 };
                 break;
@@ -193,14 +253,14 @@ public class FloorViewer extends AppCompatActivity {
                 float ImageX = (x - X + ax) / scale_x;  // перенесенные relativeImageX
                 float ImageY = (y - Y + ay) / scale_y;
 
-                /*
+
                 if (event.getAction() == MotionEvent.ACTION_UP ){
-                    debug(ImageX, ImageY);                          //тут я узнавал кооры углов комнат
+                    debug(X, Y);                          //тут я узнавал кооры углов комнат
                 }
-                */
 
 
-                if((ImageX>=217 && ImageX<= 231) && (ImageY>=362 && ImageY<=390 ) ){
+
+                if((event.getAction() == MotionEvent.ACTION_DOWN) && (ImageX>=217 && ImageX<= 231) && (ImageY>=362 && ImageY<=390 ) ){
                     insadee();  // да, я глупый и не смог разобраться с (clickPosition.isInsideRoom(r))
                 }
 

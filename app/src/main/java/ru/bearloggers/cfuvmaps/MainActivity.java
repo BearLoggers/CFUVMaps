@@ -135,6 +135,9 @@ public class MainActivity extends AppCompatActivity
                                 startActivity(intent);
                                 break;
                             case 2:
+                                intent.putExtra("IMAGE_NAME", "floor2");
+                                startActivity(intent);
+                                break;
                             case 3:
                             case 4:
                                 ToastBeta();
@@ -226,22 +229,6 @@ public class MainActivity extends AppCompatActivity
 
     public void korpus_C(View view)
     {
-
-        /*
-        final Dialog dialog = new Dialog(MainActivity.this);
-        dialog.setContentView(R.layout.dialog_layout);
-
-        Button close_dialog = (Button) dialog.findViewById(R.id.close);
-        close_dialog.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                dialog.dismiss();
-            }
-        });
-
-        dialog.setCancelable(false);
-        dialog.show();
-         */
 
         if (x!= 0)
         {
