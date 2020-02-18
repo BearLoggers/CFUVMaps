@@ -127,11 +127,11 @@ public class MainActivity extends AppCompatActivity
                     korpus_A(view);
                         switch (floor){
                             case 0:
-                                intent.putExtra("IMAGE_NAME", "tsokolo1betta");
+                                intent.putExtra("IMAGE_NAME", "floor0");
                                 startActivity(intent);
                                 break;
                             case 1:
-                                intent.putExtra("IMAGE_NAME", "sadcat");
+                                intent.putExtra("IMAGE_NAME", "floor1");
                                 startActivity(intent);
                                 break;
                             case 2:
@@ -139,8 +139,12 @@ public class MainActivity extends AppCompatActivity
                                 startActivity(intent);
                                 break;
                             case 3:
+                                intent.putExtra("IMAGE_NAME", "floor3");
+                                startActivity(intent);
+                                break;
                             case 4:
-                                ToastBeta();
+                                intent.putExtra("IMAGE_NAME", "tsokolo1betta");
+                                startActivity(intent);
                                 break;
                             default:
                                 Toast.makeText(this, "Введен несуществующий этаж", Toast.LENGTH_SHORT).show();
@@ -196,10 +200,11 @@ public class MainActivity extends AppCompatActivity
         {
             floor.setVisibility(View.VISIBLE);
         }
+        floor4.setOnClickListener(lis("tsokolo1betta", 4));
         floor3.setOnClickListener(lis("floor3", 3));
         floor2.setOnClickListener(lis("floor2", 2));
-        floor1.setOnClickListener(lis("sadcat", 1));
-        floor0.setOnClickListener(lis("tsokolo1betta", 0));
+        floor1.setOnClickListener(lis("floor1", 1));
+        floor0.setOnClickListener(lis("floor0", 0));
 
     }
 

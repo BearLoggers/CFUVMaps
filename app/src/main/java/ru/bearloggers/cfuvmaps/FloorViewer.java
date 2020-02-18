@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.content.res.Resources;
 import android.graphics.Matrix;
 import android.graphics.Point;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MotionEvent;
@@ -33,7 +34,7 @@ public class FloorViewer extends AppCompatActivity {
     private float py = -1;
     private float X = 200;
     private float Y = 300;
-
+    private int floor_for_mark = -1;
     private float screen_width = -1;
     private float screen_height = -1;
 
@@ -65,13 +66,27 @@ public class FloorViewer extends AppCompatActivity {
     }
 
     // диалог это новый layout
-    boolean insadee() {
+    boolean insadee(int froom) {
         final Dialog dialog = new Dialog(FloorViewer.this);
         dialog.setContentView(R.layout.dialog_layout);
         dialog.setCancelable(false);
         dialog.show();
 
+
         Button close_dialog = (Button) dialog.findViewById(R.id.close);
+
+        switch (froom) {
+            case 0:
+                close_dialog.setBackground(this.getResources().getDrawable(R.drawable.lupa));
+                break;
+            case 1:
+                close_dialog.setBackground(this.getResources().getDrawable(R.drawable.vernadsiy));
+                break;
+            case 2:
+                close_dialog.setBackground(this.getResources().getDrawable(R.drawable.lab9));
+                break;
+        }
+
         close_dialog.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -89,6 +104,30 @@ public class FloorViewer extends AppCompatActivity {
 
         setContentView(R.layout.activity_floorviewer);
         String imageName = in.getStringExtra("IMAGE_NAME");
+
+
+        if (imageName == "floor0")
+        {
+            floor_for_mark = 0;
+        }
+        if (imageName == "floor1")
+        {
+            floor_for_mark = 1;
+        }
+        if (imageName == "floor2")
+        {
+            floor_for_mark = 2;
+        }
+        if (imageName == "floor3")
+        {
+            floor_for_mark = 3;
+        }
+        if (imageName == "tsokolo1betta")
+        {
+            floor_for_mark = 4;
+        }
+
+
         Toast.makeText(this, imageName, Toast.LENGTH_SHORT).show();
 
         myLayout = findViewById(R.id.myLayout);
@@ -103,15 +142,88 @@ public class FloorViewer extends AppCompatActivity {
 
         switch (floorN) {
             case 0:
+                floor_for_mark = 0;
                 rooms = new Room[] {
-                        new Room(198, 205, 250, 234, 1250,1013, 1),
-                        new Room(154, 206, 197, 234,954, 1116, 2),
-                        new Room(422, 547, 480, 586, -658, -879, 3),
-                        new Room(217, 362, 231, 390, 25, -705, 4)  //кабинет по координатам с моего телефона
+                        new Room(-1, -1, -1, -1, 791,-306, 1),
+                        new Room(-1, -1, -1, -1, 791,-306, 2),
+                        new Room(-1, -1, -1, -1, 791,-306, 3),
+                        new Room(-1, -1, -1, -1, 603,-306, 4),
+
+                        new Room(-1, -1, -1, -1, 441,-306, 6),
+                        new Room(-1, -1, -1, -1, 554,-306, 7),
+                        new Room(-1, -1, -1, -1, 421,-306, 8),
+                        new Room(-1, -1, -1, -1, 267,-306, 9),
+                        new Room(-1, -1, -1, -1, 282,-306, 10),
+                        new Room(-1, -1, -1, -1, 135,-306, 11),
+
+                        new Room(-1, -1, -1, -1, 135,-306, 13),
+
+                        new Room(-1, -1, -1, -1, -139,-306, 14),
+                        new Room(-1, -1, -1, -1, -271,-306, 15),
+                        new Room(-1, -1, -1, -1, -500,-306, 16),
+                        new Room(-1, -1, -1, -1, -500,-306, 17),
+                        new Room(-1, -1, -1, -1, -341,-272, 18),
+                        new Room(-1, -1, -1, -1, -144,-269, 19),
+                        new Room(-1, -1, -1, -1, -335,-112, 20),
+                        new Room(-1, -1, -1, -1, -150,-112, 21),
+                        new Room(-1, -1, -1, -1, -331,250, 22),
+                        new Room(-1, -1, -1, -1, -331,250, 23),
+                        new Room(-1, -1, -1, -1, -140,8, 24),
+                        new Room(-1, -1, -1, -1, -140,235, 25),
+                        new Room(-1, -1, -1, -1, -333,8, 26),
+                        new Room(-1, -1, -1, -1, -333,479, 27),
+
+                        new Room(-1, -1, -1, -1, -131,820, 30),
+                        new Room(-1, -1, -1, -1, -342,720, 31),
+                        new Room(-1, -1, -1, -1, -142,675, 32),
+
+                        new Room(-1, -1, -1, -1, -144,-269, 37),
+
+                };
+                break;
+            case 1:
+                floor_for_mark = 1;
+                rooms = new Room[] {
+                        new Room(-1, -1, -1, -1, -368,-306, 1),
+                        new Room(-1, -1, -1, -1, -368,-306, 2),
+                        new Room(-1, -1, -1, -1, -213,-306, 3),
+                        new Room(-1, -1, -1, -1, -213,-306, 4),
+
+                        new Room(-1, -1, -1, -1, -213,-306, 6),
+                        new Room(-1, -1, -1, -1, -360,-306, 11),
+                        new Room(-1, -1, -1, -1, -213,-306, 12),
+                        new Room(-1, -1, -1, -1, -360,-306, 13),
+                        new Room(-1, -1, -1, -1, -213,-306, 14),
+                        new Room(-1, -1, -1, -1, -360,-306, 15),
+                        new Room(-1, -1, -1, -1, -213,-306, 16),
+                        new Room(-1, -1, -1, -1, -360,-306, 17),
+                        new Room(-1, -1, -1, -1, -213,-306, 18),
+                        new Room(-1, -1, -1, -1, -350,46, 19),
+                        new Room(-1, -1, -1, -1, -213,-306, 20),
+                        new Room(-1, -1, -1, -1, -350,215, 21),
+                        new Room(-1, -1, -1, -1, -190,80, 22),
+                        new Room(-1, -1, -1, -1, -353,307, 23),
+                        new Room(-1, -1, -1, -1, -190,286, 24),
+                        new Room(-1, -1, -1, -1, -350,407, 25),
+                        new Room(-1, -1, -1, -1, -220, 431, 26),
+
+                        new Room(-1, -1, -1, -1, 16, 683, 28),
+                        new Room(-1, -1, -1, -1, -33, 774, 29),
+                        new Room(-1, -1, -1, -1, 90, 690, 30),
+                        new Room(-1, -1, -1, -1, 203, 693, 32),
+                        new Room(-1, -1, -1, -1, 203, 693, 33),
+                        new Room(-1, -1, -1, -1, 312, 725, 34),
+                        new Room(-1, -1, -1, -1, 387, 712, 35),
+                        new Room(-1, -1, -1, -1, 270, 801, 36),
+                        new Room(-1, -1, -1, -1, 687, 744, 37),
+                        new Room(-1, -1, -1, -1, 597, 712, 38),
+                        new Room(-1, -1, -1, -1, 687, 744, 39),
+                        new Room(-1, -1, -1, -1, 687, 744, 40),
 
                 };
                 break;
             case 2:
+                floor_for_mark = 2;
                 rooms = new Room[] {
                         new Room(-1, -1, -1, -1, 86,-276, 1),
                         new Room(-1, -1, -1, -1, -122,-296, 2),
@@ -167,6 +279,62 @@ public class FloorViewer extends AppCompatActivity {
                         new Room(-1, -1, -1, -1, 855,781, 61),
 
                         new Room(-1, -1, -1, -1, 855,781, 63),
+
+                };
+                break;
+            case 3:
+                floor_for_mark = 3;
+                rooms = new Room[] {
+                        new Room(-1, -1, -1, -1, -385,-306, 1),
+                        new Room(-1, -1, -1, -1, -640,-306, 2),
+                        new Room(-1, -1, -1, -1, -490,-306, 3),
+                        new Room(-1, -1, -1, -1, -490,-120, 4),
+                        new Room(-1, -1, -1, -1, -274,-306, 5),
+                        new Room(-1, -1, -1, -1, -270,-47, 6),
+                        new Room(-1, -1, -1, -1, -481,82, 7),
+                        new Room(-1, -1, -1, -1, -482,235, 8),
+                        new Room(-1, -1, -1, -1, -280,221, 9),
+                        new Room(-1, -1, -1, -1, -500,446, 10),
+                        new Room(-1, -1, -1, -1, -286,68, 11),
+                        new Room(-1, -1, -1, -1, -465,586, 12),
+                        new Room(-1, -1, -1, -1, -465,586, 13),
+                        new Room(-1, -1, -1, -1, -465,586, 14),
+                        new Room(-1, -1, -1, -1, -278,465, 15),
+                        new Room(-1, -1, -1, -1, -278,465, 16),
+                        new Room(-1, -1, -1, -1, -465,586, 17),
+                        new Room(-1, -1, -1, -1, -496,888, 18),
+                        new Room(-1, -1, -1, -1, -288,690, 19),
+                        new Room(-1, -1, -1, -1, -496,888, 20),
+                        new Room(-1, -1, -1, -1, -496,1022, 21),
+                        new Room(-1, -1, -1, -1, -274,969, 22),
+                        new Room(-1, -1, -1, -1, -381,1200, 23),
+                        new Room(-1, -1, -1, -1, -153,1200, 24),
+                        new Room(-1, -1, -1, -1, 38,1200, 25),
+                        new Room(-1, -1, -1, -1, 191,1200, 26),
+                        new Room(-1, -1, -1, -1, 86,1200, 27),
+                        new Room(-1, -1, -1, -1, 191,1200, 28),
+                        new Room(-1, -1, -1, -1, 191,1200, 29),
+                        new Room(-1, -1, -1, -1, 353,1200, 30),
+                        new Room(-1, -1, -1, -1, 353,1200, 31),
+                        new Room(-1, -1, -1, -1, 576,1200, 32),
+                        new Room(-1, -1, -1, -1, 576,1200, 33),
+                        new Room(-1, -1, -1, -1, 689,1200, 34),
+                        new Room(-1, -1, -1, -1, 850,1200, 35),
+
+                        new Room(-1, -1, -1, -1, 576,1200, 37),
+                        new Room(-1, -1, -1, -1, 474,1200, 38),
+                        new Room(-1, -1, -1, -1, 576,1200, 39),
+                        new Room(-1, -1, -1, -1, 576,1200, 40),
+
+                };
+                break;
+            case 4:
+                floor_for_mark = 4;
+                rooms = new Room[] {
+                        new Room(198, 205, 250, 234, 1250,1013, 1),
+                        new Room(154, 206, 197, 234,954, 1116, 2),
+                        new Room(422, 547, 480, 586, -658, -879, 3),
+                        new Room(217, 362, 231, 390, 25, -705, 4)  //кабинет по координатам с моего телефона
 
                 };
                 break;
@@ -255,13 +423,21 @@ public class FloorViewer extends AppCompatActivity {
 
 
                 if (event.getAction() == MotionEvent.ACTION_UP ){
-                    debug(X, Y);                          //тут я узнавал кооры углов комнат
+                    debug(ImageX, ImageY);                          //тут я узнавал кооры углов комнат
                 }
 
 
 
-                if((event.getAction() == MotionEvent.ACTION_DOWN) && (ImageX>=217 && ImageX<= 231) && (ImageY>=362 && ImageY<=390 ) ){
-                    insadee();  // да, я глупый и не смог разобраться с (clickPosition.isInsideRoom(r))
+
+
+                if( (floor_for_mark == 4) && (event.getAction() == MotionEvent.ACTION_DOWN) && (ImageX>=217 && ImageX<= 231) && (ImageY>=362 && ImageY<=390 ) ){
+                    insadee(0);  // кот на 4м этаже
+                }
+                if(  (floor_for_mark == 1) && (event.getAction() == MotionEvent.ACTION_DOWN) && (ImageX>=257 && ImageX<= 265) && (ImageY>=177 && ImageY<=186 )  ){
+                    insadee(1);  // холл(хохол)
+                }
+                if(  (floor_for_mark == 0) && (event.getAction() == MotionEvent.ACTION_DOWN) && (ImageX>=186 && ImageX<= 194) && (ImageY>=386 && ImageY<=395 )  ){
+                    insadee(2);  // 9ая лаба
                 }
 
 
