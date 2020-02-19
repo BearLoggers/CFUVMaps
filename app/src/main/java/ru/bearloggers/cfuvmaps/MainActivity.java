@@ -172,6 +172,7 @@ public class MainActivity extends AppCompatActivity
 
     public void korpus_A(View view)
     {
+        /*
         neskvik++;
         if (neskvik == 10) {
             Toast.makeText(this, "Да вы человек культуры", Toast.LENGTH_LONG).show();
@@ -182,6 +183,8 @@ public class MainActivity extends AppCompatActivity
             setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
             neskvik = 0;
         }
+
+         */
 
         if (x != 0)
         {

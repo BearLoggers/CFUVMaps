@@ -85,6 +85,24 @@ public class FloorViewer extends AppCompatActivity {
             case 2:
                 close_dialog.setBackground(this.getResources().getDrawable(R.drawable.lab9));
                 break;
+            case 3:
+                close_dialog.setBackground(this.getResources().getDrawable(R.drawable.lupa));
+                break; // 8 lab
+            case 4:
+                 close_dialog.setBackground(this.getResources().getDrawable(R.drawable.lab7));
+                 break; // 7 lab
+            case 5:
+                close_dialog.setBackground(this.getResources().getDrawable(R.drawable.zal));
+                break; // aktoviy
+            case 6:
+                close_dialog.setBackground(this.getResources().getDrawable(R.drawable.floor2holl));
+                break; // 41-45
+            case 7:
+                close_dialog.setBackground(this.getResources().getDrawable(R.drawable.lilsadcat));
+                break; // 302
+            case 8:
+                close_dialog.setBackground(this.getResources().getDrawable(R.drawable.phictech));
+                break; // phistech
         }
 
         close_dialog.setOnClickListener(new View.OnClickListener() {
@@ -438,6 +456,24 @@ public class FloorViewer extends AppCompatActivity {
                 }
                 if(  (floor_for_mark == 0) && (event.getAction() == MotionEvent.ACTION_DOWN) && (ImageX>=186 && ImageX<= 194) && (ImageY>=386 && ImageY<=395 )  ){
                     insadee(2);  // 9ая лаба
+                }
+                if(  (floor_for_mark == 0) && (event.getAction() == MotionEvent.ACTION_DOWN) && (ImageX>=173 && ImageX<= 183) && (ImageY>=336 && ImageY<=346 )  ){
+                    insadee(3);  // 8ая лаба
+                }
+                if(  (floor_for_mark == 0) && (event.getAction() == MotionEvent.ACTION_DOWN) && (ImageX>=156 && ImageX<= 163) && (ImageY>=336 && ImageY<=346 )  ){
+                    insadee(4);  // 7ая лаба
+                }
+                if(  (floor_for_mark == 2) && (event.getAction() == MotionEvent.ACTION_DOWN) && (ImageX>=266 && ImageX<= 272) && (ImageY>=98 && ImageY<=108 )  ){
+                    insadee(5);  // актовый
+                }
+                if(  (floor_for_mark == 2) && (event.getAction() == MotionEvent.ACTION_DOWN) && (ImageX>=262 && ImageX<= 270) && (ImageY>=156 && ImageY<=165 )  ){
+                    insadee(6);  // 41-45
+                }
+                if(  (floor_for_mark == 3) && (event.getAction() == MotionEvent.ACTION_DOWN) && (ImageX>=305 && ImageX<= 313) && (ImageY>=331 && ImageY<=341 )  ){
+                    insadee(7);  // 302
+                }
+                if(  (floor_for_mark == 3) && (event.getAction() == MotionEvent.ACTION_DOWN) && (ImageX>=270 && ImageX<= 278) && (ImageY>=88 && ImageY<=98 )  ){
+                    insadee(8);  // phistech
                 }
 
 

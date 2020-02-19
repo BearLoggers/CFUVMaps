@@ -22,6 +22,8 @@
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/tsokolo1betta" />
 
+
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </RelativeLayout>
